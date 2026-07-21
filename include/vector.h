@@ -17,6 +17,7 @@
   type      prefix##_sub(type a, type b); \
   type      prefix##_scale(type a, f64_t scale); \
   f64_t     prefix##_dot(type a, type b); \
+  type      prefix##_cross(type a, type b); \
   vec2f64_t prefix##_normalize(type a);
 #define DECLARE_VEC2_FUNC_CONST(type, prefix) \
   f64_t     prefix##_length(const type* a); \
@@ -24,6 +25,7 @@
   type      prefix##_sub(const type* a, const type* b); \
   type      prefix##_scale(const type* a, f64_t scale); \
   f64_t     prefix##_dot(const type* a, const type* b); \
+  type      prefix##_cross(const type* a, const type* b); \
   vec2f64_t prefix##_normalize(const type* a);
 #define DECLARE_VEC3_FUNC(type, prefix) \
   f64_t     prefix##_length(type a); \
@@ -31,6 +33,7 @@
   type      prefix##_sub(type a, type b); \
   type      prefix##_scale(type a, f64_t scale); \
   f64_t     prefix##_dot(type a, type b); \
+  type      prefix##_cross(type a, type b); \
   vec3f64_t prefix##_normalize(type a);
 #define DECLARE_VEC3_FUNC_CONST(type, prefix) \
   f64_t     prefix##_length(const type* a); \
@@ -38,6 +41,7 @@
   type      prefix##_sub(const type* a, const type* b); \
   type      prefix##_scale(const type* a, f64_t scale); \
   f64_t     prefix##_dot(const type* a, const type* b); \
+  type      prefix##_cross(const type* a, const type* b); \
   vec3f64_t prefix##_normalize(const type* a);
 // Functions definition macros.
 #define DEFINE_VEC2_FUNC(type, prefix, subtype) \
@@ -60,6 +64,7 @@
   type      prefix##_sub(type a, type b)        { return(type){(subtype)(a.x - b.x), (subtype)(a.y - b.y), (subtype)(a.z - b.z)}; } \
   type      prefix##_scale(type a, f64_t scale) { return(type){(subtype)(a.x * scale), (subtype)(a.y * scale), (subtype)(a.z * scale)}; } \
   f64_t     prefix##_dot(type a, type b)        { return a.x * b.x + a.y * b.y + a.z * b.z; } \
+  type      prefix##_cross(type a, type b)      { return(type){(subtype)(a.y * b.z - a.z * b.y), (subtype)(a.z * b.x - a.x * b.z), (subtype)(a.x * b.y - a.y * b.x)}; } \
   vec3f64_t prefix##_normalize(type a)          { f64_t length = prefix##_length(a); return(vec3f64_t){a.x / length, a.y / length, a.z / length}; }
 #define DEFINE_VEC3_FUNC_CONST(type, prefix, subtype) \
   f64_t     prefix##_length(const type* a)             { return sqrtl((a)->x * (a)->x + (a)->y * (a)->y + (a)->z * (a)->z); } \
@@ -67,6 +72,7 @@
   type      prefix##_sub(const type* a, const type* b) { return(type){(subtype)((a)->x - (b)->x), (subtype)((a)->y - (b)->y), (subtype)((a)->z - (b)->z)}; } \
   type      prefix##_scale(const type* a, f64_t scale) { return(type){(subtype)((a)->x * scale), (subtype)((a)->y * scale), (subtype)((a)->z * scale)}; } \
   f64_t     prefix##_dot(const type* a, const type* b) { return (a)->x * (b)->x + (a)->y * (b)->y + (a)->z * (b)->z; } \
+  type      prefix##_cross(const type* a, const type* b) { return(type){(subtype)(a->y * b->z - a->z * b->y), (subtype)(a->z * b->x - a->x * b->z), (subtype)(a->x * b->y - a->y * b->x)}; } \
   vec3f64_t prefix##_normalize(const type* a)          { f64_t length = prefix##_length(a); return(vec3f64_t){(a)->x / length, (a)->y / length, (a)->z / length}; }
 
 DECLARE_VEC2_STRUCT(i8_t,  vec2i8_t);
