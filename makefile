@@ -2,17 +2,11 @@ CCOMPILER := gcc
 CWARNS		:= -Wall -Wextra
 COPT			:= -std=c99 -march=native -mtune=native -O2 -fno-math-errno -ftrapping-math
 
-all: mkdirs libvector libmatrix libtransform
+all: mkdirs libmatrix libtransform
 
 mkdirs:
 	mkdir -p libs
 	mkdir -p objs
-
-libvector: mkdirs
-	$(CCOMPILER) $(CWARNS) $(COPT) vector.c -c
-	mv vector.o objs/vector.o
-	ar rsc libvector.a objs/vector.o
-	mv libvector.a libs/libvector.a
 
 libmatrix: mkdirs
 	$(CCOMPILER) $(CWARNS) $(COPT) matrix.c -c
@@ -23,7 +17,5 @@ libmatrix: mkdirs
 libtransform: mkdirs
 	$(CCOMPILER) $(CWARNS) $(COPT) transform.c -c
 	mv transform.o objs/transform.o
-	$(CCOMPILER) $(CWARNS) $(COPT) vector.c -c
-	mv vector.o objs/vector.o
-	ar rsc libtransform.a objs/transform.o objs/vector.o
+	ar rsc libtransform.a objs/transform.o
 	mv libtransform.a libs/libtransform.a
