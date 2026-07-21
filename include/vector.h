@@ -1,5 +1,5 @@
-#ifndef H_LINEARALGEBRA_VECTOR
-#define H_LINEARALGEBRA_VECTOR
+#ifndef H_LAC_VECTOR
+#define H_LAC_VECTOR
 
 // Not sure that vectors of i8, u8, i16 and u16 are useful.
 
