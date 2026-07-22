@@ -1,7 +1,8 @@
 #include "../include/transform.h"
+
 #include <stdio.h>
 
-// gcc -Llibs examples/transform.c -o main -lm -l:libtransform.a
+// gcc transform.c examples/transform.c -o main -lm
 
 int main(void) 
 {

@@ -1,7 +1,8 @@
 #include "../include/vector.h"
+
 #include <stdio.h>
 
-// gcc -Llibs tests/vector.c -o main -lm -l:libvector.a
+// gcc examples/vector.c -o main -lm
 
 int main(void)
 {
