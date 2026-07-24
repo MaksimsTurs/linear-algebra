@@ -2,7 +2,6 @@
 #define H_CTYPES
 
 #include <stdint.h>
-#include <float.h>
 
 typedef void            void_t;
 typedef unsigned char   bool_t;
